@@ -4,7 +4,8 @@ import { MongoClient } from "mongodb";
 import bcrypt from "bcrypt";
 import { fileURLToPath } from "url";
 import cors from "cors";
-
+import dotenv from "dotenv";
+dotenv.config();
 const app = express();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -16,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // MongoDB setup
-const mongoURI = process.env.mongoURI;
+const mongoURI = process.env.MONGODB_URI ;
 
 const client = new MongoClient(mongoURI);
 let db;

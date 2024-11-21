@@ -38,7 +38,7 @@ const connectDB = async () => {
 connectDB().then(() => {
   // Test Route to check if API is working
   app.get("/", (req, res) => {
-    res.json({ message: "API is working" });
+    res.send( "API is working" );
   });
 
   // Signup Route

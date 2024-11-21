@@ -1,0 +1,54 @@
+/* About.css */
+
+body {
+    background-image: url('./white imag.jpg'); 
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    color: black; 
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%; /* Makes the container span the full width of the page */
+    margin: 0; /* Removes the centering effect */
+    padding: 20px; /* Keeps some padding for internal spacing */
+    background-color: rgba(255, 255, 255, 0.8); /* Optional: Background for readability */
+    border-radius: 10px; /* Keeps the rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-top: 70px;  /* Optional: Shadow for aesthetics */
+}
+
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.trust-table {
+    margin-top: 20px; 
+    width: 100%; 
+    border-collapse: collapse;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+.trust-table th, 
+.trust-table td {
+    padding: 10px;
+    border: 1px solid white; 
+    font-weight: bold; 
+    font-size: 16px; 
+}
+
+.trust-table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+p {
+    margin-top: 30px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: black;
+}

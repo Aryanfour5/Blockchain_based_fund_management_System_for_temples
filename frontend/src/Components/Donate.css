@@ -1,0 +1,141 @@
+/* General Styles */
+/* General Styles */
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background: linear-gradient(to bottom, #f7efe5, #f3dbc5);
+    color: #4d2600;
+    display: flex; /* Add flex properties to the body */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Full viewport height */
+}
+
+/* Container */
+.container {
+    width: 400px; /* Set a fixed width for the container */
+    background: #fff8e1;
+    border: 2px solid #d4a373;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Title */
+h1 {
+    font-family: 'Cursive', serif;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #8c5c30;
+}
+
+/* Form */
+form {
+    margin-top: 20px;
+}
+
+select,
+input {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 1rem;
+    border: 2px solid #d4a373;
+    border-radius: 5px;
+    background: #fff8e1;
+    color: #4d2600;
+    outline: none;
+    font-family: 'Arial', serif;
+}
+
+select:hover,
+input:focus {
+    border-color: #c78f48;
+    box-shadow: 0 0 5px rgba(199, 143, 72, 0.5);
+}
+
+/* Buttons */
+button {
+    background: #c78f48;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+button:hover {
+    background: #8c5c30;
+}
+
+/* Wallet Connection */
+p {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #4d2600;
+    margin-bottom: 20px;
+    background: #fef2d1;
+    padding: 10px;
+    border: 1px solid #d4a373;
+    border-radius: 5px;
+}
+
+/* Recipient Selection */
+label {
+    font-size: 1.1rem;
+    color: #8c5c30;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Decorative Borders */
+.container:before {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background: #c78f48;
+    margin: 10px auto;
+    border-radius: 2px;
+}
+/* Loading Screen */
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.loading h2 {
+    color: #333;
+}
+
+.loading p {
+    color: #666;
+}
+
+/* Thank You Page */
+.thank-you {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f4f4f9;
+}
+
+.thank-you h2 {
+    color: #28a745;
+    font-size: 2rem;
+}
+
+.thank-you p {
+    color: #333;
+    font-size: 1.2rem;
+}

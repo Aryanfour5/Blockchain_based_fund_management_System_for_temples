@@ -35,7 +35,8 @@ const connectDB = async () => {
 };
 
 // Ensure DB is connected before starting the server
-connectDB().then(() => {
+connectDB();
+
   // Test Route to check if API is working
   app.get("/", (req, res) => {
     res.send( "API is working" );
@@ -164,5 +165,4 @@ connectDB().then(() => {
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
   });
-});
 export default app;

@@ -106,7 +106,7 @@ const Donate = () => {
             console.log("Transaction hash:", receipt.transactionHash);
             
             // Save to the database
-            const response = await fetch('http://localhost:5000/donate', {
+            const response = await fetch('https://blockchain-based-fund-management-system-for-temples.vercel.app/donate', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

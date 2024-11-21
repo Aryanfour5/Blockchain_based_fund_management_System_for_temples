@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // MongoDB setup
-const mongoURI = "mongodb://127.0.0.1:27017";
+const mongoURI = process.env.mongoURI;
 
 const client = new MongoClient(mongoURI);
 let db;
@@ -164,4 +164,4 @@ connectDB().then(() => {
     console.log(`Server is running on port ${PORT}`);
   });
 });
-export { app };
+export default app;

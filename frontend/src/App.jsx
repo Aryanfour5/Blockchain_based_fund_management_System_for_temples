@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Signup from "./components/Signup";
-import Login from "./components/Login";
-import Donate from "./components/Donate";
-import Transactions from "./components/Transaction";
+import Signup from "./Components/Signup.jsx";
+import Login from "./Components/Login.jsx";
+import Donate from "./Components/Donate.jsx";
+import Transactions from "./Components/Transaction.jsx";
 import About from "./Components/About";
 
 function App() {

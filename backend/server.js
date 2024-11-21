@@ -5,7 +5,6 @@ import bcrypt from "bcrypt";
 import { fileURLToPath } from "url";
 import cors from "cors";
 import dotenv from "dotenv";
-import connectDB from "./connectDB"; // Import the connectDB function
 
 dotenv.config();
 
@@ -22,8 +21,41 @@ app.use(express.urlencoded({ extended: true }));
 // MongoDB setup
 const mongoURI = process.env.MONGODB_URI;
 
-// Connect to MongoDB before starting the server
-connectDB();
+mongoose.connect(mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+  .then(() => {
+    console.log("✅ Connection to MongoDB established");
+  })
+  .catch((error) => {
+    console.error("❌ MongoDB connection error:", error);
+    process.exit(1); // Exit the process with failure if connection fails
+  });
+
+// Define Mongoose models
+const User = mongoose.model('User', new mongoose.Schema({
+  username: { type: String, required: true },
+  password: { type: String, required: true },
+  aadhar: { type: String, required: true },
+  email: { type: String, required: true },
+  phone: { type: String, required: true },
+  timestamp: { type: Date, default: Date.now },
+}));
+
+const Donation = mongoose.model('Donation', new mongoose.Schema({
+  transactionHash: { type: String, required: true },
+  senderAddress: { type: String, required: true },
+  recipientAddress: { type: String, required: true },
+  donationAmount: { type: Number, required: true },
+  timestamp: { type: Date, required: true },
+}));
+
+const Feedback = mongoose.model('Feedback', new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+  message: { type: String, required: true },
+}));
 
 // Test Route to check if API is working
 app.get("/", (req, res) => {
@@ -43,14 +75,15 @@ app.post("/signup", async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Insert user into the database
-    await mongoose.connection.db.collection("users").insertOne({
+    const newUser = new User({
       username,
       password: hashedPassword,
       aadhar,
       email,
       phone,
-      timestamp: new Date(),
     });
+    
+    await newUser.save();
 
     res.status(201).json({ message: "User created successfully!" });
   } catch (error) {
@@ -64,7 +97,7 @@ app.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
   try {
-    const user = await mongoose.connection.db.collection("users").findOne({ username });
+    const user = await User.findOne({ username });
     if (!user) return res.status(401).json({ message: "User not found" });
 
     // Compare the password with the hashed password in the database
@@ -90,13 +123,15 @@ app.post("/donate", async (req, res) => {
 
   try {
     // Save the donation details to the MongoDB database
-    await mongoose.connection.db.collection("donations").insertOne({
+    const newDonation = new Donation({
       transactionHash,
       senderAddress,
       recipientAddress,
       donationAmount,
       timestamp,
     });
+
+    await newDonation.save();
 
     // Respond with a success message
     res.status(201).json({ message: "Donation submitted successfully!" });
@@ -111,7 +146,7 @@ app.get("/transactions/:address", async (req, res) => {
   const { address } = req.params;
 
   try {
-    const transactions = await mongoose.connection.db.collection("donations").find({ templeAddress: address }).toArray();
+    const transactions = await Donation.find({ templeAddress: address });
     res.status(200).json(transactions);
   } catch (error) {
     console.error("Error fetching transactions:", error);
@@ -128,7 +163,8 @@ app.post("/feedback", async (req, res) => {
       return res.status(400).json({ message: "All fields are required" });
     }
 
-    await mongoose.connection.db.collection("feedback").insertOne({ name, email, message });
+    const newFeedback = new Feedback({ name, email, message });
+    await newFeedback.save();
     res.status(201).json({ message: "Feedback submitted successfully!" });
   } catch (error) {
     console.error("Error submitting feedback:", error);
@@ -139,7 +175,7 @@ app.post("/feedback", async (req, res) => {
 // Fetch Feedback
 app.get("/feedback", async (req, res) => {
   try {
-    const feedbacks = await mongoose.connection.db.collection("feedback").find().toArray();
+    const feedbacks = await Feedback.find();
     res.status(200).json(feedbacks);
   } catch (error) {
     console.error("Error fetching feedback data:", error);

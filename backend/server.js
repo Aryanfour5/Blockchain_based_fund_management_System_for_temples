@@ -5,7 +5,7 @@ import bcrypt from "bcrypt";
 import { fileURLToPath } from "url";
 import cors from "cors";
 import dotenv from "dotenv";
-import connectDB from "./connectDB.jsx"; // Import the connectDB function
+import connectDB from "./connectDB"; // Import the connectDB function
 
 dotenv.config();
 

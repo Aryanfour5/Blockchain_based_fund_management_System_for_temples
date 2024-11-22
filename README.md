@@ -13,8 +13,7 @@ To develop a  fund management system for temples which will be accessed by two m
 
 # System Architecture
 ![image](https://github.com/thakerhriday/Temple_Fund_Management_System/assets/143881496/6e8eaee0-f659-4abf-a397-56bd4ef626d4)
-#Working Model
-[Watch the video demo](https://youtu.be/sk4hWT-_EHI)
+
 
 
 # Conclusion

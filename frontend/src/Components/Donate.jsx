@@ -42,10 +42,10 @@ const Donate = () => {
         const selectedValue = event.target.value;
         switch (selectedValue) {
             case 'temple1':
-                setRecipientAddress('0x3D0a7b23B0b245203CfB39af68e62E6A915DcAaF');
+                setRecipientAddress('0x01daB58508FBE3aAF70b3bFBAB1EB69634EEc098');
                 break;
             case 'temple2':
-                setRecipientAddress('0x3D0a7b23B0b245203CfB39af68e62E6A915DcAaF');
+                setRecipientAddress('0x01daB58508FBE3aAF70b3bFBAB1EB69634EEc098');
                 break;
             default:
                 setRecipientAddress('');

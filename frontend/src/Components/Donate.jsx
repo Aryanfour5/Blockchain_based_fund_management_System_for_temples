@@ -77,11 +77,11 @@ const Donate = () => {
             const transaction = {
                 to: recipientAddress,
                 value: ethers.utils.parseEther(amount),
-                gasLimit: ethers.utils.hexlify(21000), // Set manual gas limit
             };
     
             console.log('Sending transaction:', transaction);
     
+            // Send the transaction
             const txResponse = await signer.sendTransaction(transaction);
             console.log('Transaction sent:', txResponse);
     
@@ -102,9 +102,9 @@ const Donate = () => {
                 donationAmount: amount,
                 timestamp: new Date().toISOString(), // Current timestamp
             };
-
+    
             console.log("Transaction hash:", receipt.transactionHash);
-            
+    
             // Save to the database
             const response = await fetch('https://blockchain-based-fund-management-system-for-temples.vercel.app/donate', {
                 method: 'POST',
@@ -120,16 +120,16 @@ const Donate = () => {
                 const errorData = await response.json();
                 alert(`Failed to save donation details: ${errorData.message}`);
             }
-
+    
             // Redirect to login page after successful transaction
             navigate('/login'); // Redirect to login page
-
         } catch (error) {
             console.error('Error sending transaction:', error);
             alert(`Transaction failed: ${error.message}`);
             setLoading(false); // Stop loading on error
         }
     };
+    
 
     return (
         <div className="container">
